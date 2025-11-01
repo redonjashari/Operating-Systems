@@ -1,0 +1,51 @@
+int N; //coins needed per drink
+int C // machine capacity
+
+semaphore slot = 0;
+semaphore coins = 0;
+semaphore dispensed = 0;
+semaphore mtx = 1;
+semaphore need_refill =0;
+semaphore refilled = 0;
+
+void machine(void)
+{
+    loop {
+        for 1..N
+        down(slot)
+
+        down(mtx)
+        if (stock == 0) {
+            up(need_refill)
+            up(mtx)
+            down(refilled)
+            down(mutex) 
+        }
+        stock -= 1
+        up(mtx);
+
+        dispense_drink(); // dispenses a single drink
+        up(dispensed)
+    }
+}
+
+void student(void)
+{   
+    down(slot)
+    for 1..N
+        insert_coin(); // inserts a single coin
+        up(coins)
+
+    down(dispensed)
+    pickup_drink(); // pickup a dispensed drink
+    up(slot)
+}
+
+void supplier(void)
+{
+    for 1..C
+        down(need_refill)
+        load_drink(); // load a single drink
+    up(refilled)
+    collect_coins(); // collect the coins
+}

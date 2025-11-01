@@ -1,0 +1,33 @@
+the coffee tastes so good here
+
+semaphore s1 = 0
+semaphore s2 = 0
+semaphore s3 = 0
+
+void a(void) {
+   print(the)
+   up(s1)
+
+   down(s2)
+   print(tastes)
+   up(s3)
+
+   down(s2)
+   print(good)
+   up(s1) 
+}
+
+void b(void) {
+    down(s1)
+    print(coffee)
+    up(s2)
+    
+    down(s1)
+    print(here)
+}
+
+void c(void) {
+    down(s3)
+    print(so)
+    up(s2)
+}
